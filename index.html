@@ -1,107 +1,247 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>JS Objects Exercises</title>
-</head>
-<body>
-    <h1>JavaScript Objects Exercises</h1>
-    <p>Open the console to see the outputs.</p>
+<!DOCTYPE html>  <html lang="en">  
+  <head>  
+    <meta charset="UTF-8" />  
+    <title>JS Events Per Section</title>  
+    <style>  
+      body {  
+        font-family: "Poppins", Arial, sans-serif;  
+        background: #f0f2f5;  
+        margin: 0;  
+        padding: 0;  
+        color: #333;  
+      }  
+      header {  
+        background: linear-gradient(135deg, #11998e, #38ef7d);  
+        padding: 30px;  
+        text-align: center;  
+        color: white;  
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+      }  
+      h1 {  
+        margin: 0;  
+        font-size: 36px;  
+      }  
+      .container {  
+        width: 90%;  
+        max-width: 1200px;  
+        margin: 30px auto;  
+        display: grid;  
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));  
+        gap: 20px;  
+      }  
+      .card {  
+        background: white;  
+        border-radius: 12px;  
+        padding: 20px;  
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);  
+        transition: 0.3s;  
+      }  
+      .card:hover {  
+        transform: translateY(-5px);  
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);  
+      }  
+      button,  
+      input,  
+      select,  
+      textarea {  
+        padding: 10px;  
+        margin: 5px 0;  
+        border-radius: 6px;  
+        border: 1px solid #ccc;  
+        width: 100%;  
+        box-sizing: border-box;  
+      }  
+      button {  
+        background: #11998e;  
+        color: white;  
+        border: none;  
+        cursor: pointer;  
+        transition: 0.3s;  
+      }  
+      button:hover {  
+        background: #38ef7d;  
+      }  
+      .hover-box {  
+        width: 100%;  
+        height: 80px;  
+        background: #ffcccc;  
+        text-align: center;  
+        line-height: 80px;  
+        margin-bottom: 10px;  
+        border-radius: 6px;  
+      }  
+      p.output {  
+        background: #f0f0f0;  
+        padding: 5px 10px;  
+        border-radius: 6px;  
+        min-height: 20px;  
+      }  
+    </style>  
+  </head>  
+  <body>  
+    <header>  
+      <h1>JS Events Per Section</h1>  
+      <p>See each event's result immediately below it!</p>  
+    </header>  <div class="container">  
+  <!-- Click & Double Click -->  
+  <div class="card">  
+    <h2>Click & Double Click</h2>  
+    <button id="clickBtn">Click Me</button>  
+    <button id="dblClickBtn">Double Click Me</button>  
+    <p id="clickOutput" class="output"></p>  
+  </div>  
 
-    <script>
-    console.log("===== Object Literals =====");
-    const student = { name: "Amina", age: 20, course: "Data Science" };
-    console.log("Student:", student);
+  <!-- Hover Events -->  
+  <div class="card">  
+    <h2>Hover Events</h2>  
+    <div id="hoverBox" class="hover-box">Hover over me!</div>  
+    <p id="hoverOutput" class="output"></p>  
+  </div>  
 
-    const car = { brand: "Toyota", model: "Corolla", year: 2020 };
-    console.log("Car:", car);
+  <!-- Focus & Blur -->  
+  <div class="card">  
+    <h2>Focus & Blur</h2>  
+    <input type="text" id="focusInput" placeholder="Focus here..." />  
+    <p id="focusOutput" class="output"></p>  
+  </div>  
 
-    const phone = { company: "Samsung", storage: "128GB", battery: "85%" };
-    console.log("Phone:", phone);
+  <!-- Input & Change -->  
+  <div class="card">  
+    <h2>Input & Change</h2>  
+    <input  
+      type="text"  
+      id="liveInput"  
+      placeholder="Type to see live output"  
+    />  
+    <select id="selectInput">  
+      <option value="">Choose an option</option>  
+      <option value="Option A">Option A</option>  
+      <option value="Option B">Option B</option>  
+      <option value="Option C">Option C</option>  
+    </select>  
+    <p id="inputOutput" class="output"></p>  
+  </div>  
 
-    console.log("===== Constructor Functions =====");
-    function Employee(name, salary, role) { this.name = name; this.salary = salary; this.role = role; }
-    const emp = new Employee("Khalid", 5000, "Manager");
-    console.log("Employee:", emp);
+  <!-- Keyboard Event -->  
+  <div class="card">  
+    <h2>Keyboard Event</h2>  
+    <input type="text" id="keyInput" placeholder="Press any key..." />  
+    <p id="keyOutput" class="output"></p>  
+  </div>  
 
-    function Product(name, price, inStock) { this.name = name; this.price = price; this.inStock = inStock; }
-    const product = new Product("Laptop", 1200, true);
-    console.log("Product:", product);
+  <!-- Scroll Event -->  
+  <div class="card" style="height: 200px; overflow-y: scroll">  
+    <h2>Scroll Event</h2>  
+    <div  
+      id="scrollContent"  
+      style="  
+        height: 500px;  
+        background: linear-gradient(to bottom, #f9f9f9, #ccc);  
+      "  
+    ></div>  
+    <p id="scrollOutput" class="output"></p>  
+  </div>  
 
-    function Book(title, author, pages) { this.title = title; this.author = author; this.pages = pages; }
-    const book = new Book("JavaScript Basics", "John Doe", 250);
-    console.log("Book:", book);
+  <!-- Context Menu -->  
+  <div class="card">  
+    <h2>Right Click (Context Menu)</h2>  
+    <div id="contextBox" class="hover-box">Right-click me!</div>  
+    <p id="contextOutput" class="output"></p>  
+  </div>  
 
-    console.log("===== ES6 Classes =====");
-    class Teacher { constructor(name="Fatima", subject="Math", experience=5) { this.name = name; this.subject = subject; this.experience = experience; } }
-    const teacher = new Teacher();
-    console.log("Teacher:", teacher);
+  <!-- Event Delegation -->  
+  <div class="card">  
+    <h2>Event Delegation</h2>  
+    <ul id="delegationList">  
+      <li>Delegated Item 1</li>  
+      <li>Delegated Item 2</li>  
+      <li>Delegated Item 3</li>  
+    </ul>  
+    <p id="delegationOutput" class="output"></p>  
+  </div>  
+</div>  
 
-    class BankAccount { constructor(accountNumber, ownerName, balance) { this.accountNumber = accountNumber; this.ownerName = ownerName; this.balance = balance; } }
-    const account = new BankAccount("AC12345", "Abdirahman", 3000);
-    console.log("Bank Account:", account);
+<script src="events.js"></script>
 
-    class Animal { constructor(type, color, age) { this.type = type; this.color = color; this.age = age; } }
-    const animal = new Animal("Cat", "White", 2);
-    console.log("Animal:", animal);
+  </body>  
+</html>  Click & Double Click
 
-    console.log("===== Access & Update =====");
-    const laptopObj = { brand: "Dell", ram: "8GB", price: 700 };
-    console.log("Original Laptop RAM:", laptopObj.ram);
-    laptopObj.ram = "16GB";
-    console.log("Updated Laptop RAM:", laptopObj.ram);
+Add a click event to Click Me button that displays "Button clicked!" in its output paragraph.
 
-    const user = { username: "Ali2025", email: "ali@example.com", age: 22 };
-    console.log("Old Email:", user.email);
-    user.email = "ali.new@example.com";
-    console.log("Updated Email:", user.email);
+Add a double-click event to Double Click Me button that displays "Button double-clicked!" in its output paragraph.
 
-    const hotelRoom = { roomNumber: 105, price: 50, type: "Single" };
-    console.log("Original Price:", hotelRoom.price);
-    hotelRoom.price = 40;
-    console.log("Updated Price:", hotelRoom.price);
+Change the background color of Click Me button when clicked.
 
-    console.log("===== Add Properties =====");
-    const myCar = { brand: "Honda", model: "Civic", year: 2019 };
-    myCar.owner = "Omar";
-    myCar["last-service-date"] = "2025-01-01";
-    console.log("Car with new properties:", myCar);
+Change the text of Double Click Me button to "Wow!" when double-clicked.
 
-    const myStudent = { name: "Maryam", grade: "A", school: "Afbara Academy" };
-    myStudent.age = 18;
-    myStudent["favorite-subject"] = "Physics";
-    console.log("Student with new properties:", myStudent);
+Make both buttons log their click type (click or dblclick) in the console.
 
-    const shopItem = { itemName: "Milk", price: 2, category: "Food" };
-    shopItem.quantity = 30;
-    shopItem["discount-percentage"] = 10;
-    console.log("Shop item with new properties:", shopItem);
+Hover Events
 
-    console.log("===== Iterating Objects =====");
-    const menu = { burger: 5, pizza: 8, juice: 3 };
-    for (let item in menu) console.log(item + ": $" + menu[item]);
+Add mouseover event to hoverBox that changes its background color to green.
 
-    const city = { population: 500000, mayor: "Hassan", area: "200 sq km" };
-    for (let key in city) console.log(key + ": " + city[key]);
+Add mouseout event to hoverBox that changes the background back to red.
 
-    const schedule = { math: "8:00 AM", english: "10:00 AM", science: "1:00 PM" };
-    for (let subject in schedule) console.log(subject + ": " + schedule[subject]);
+Add mouseenter event to display "Mouse entered!" in the hover output paragraph.
 
-    console.log("===== JSON Conversion =====");
-    const movie = { title: "Inception", duration: "2h 30m", rating: 9 };
-    const movieJSON = JSON.stringify(movie);
-    console.log("Movie JSON:", movieJSON);
+Add mouseleave event to display "Mouse left!" in the hover output paragraph.
 
-    const jsonStr = '{"name":"Sara","age":25,"country":"Kenya"}';
-    const objFromJSON = JSON.parse(jsonStr);
-    console.log("Name:", objFromJSON.name);
-    console.log("Age:", objFromJSON.age);
-    console.log("Country:", objFromJSON.country);
+Make the hoverBox text change to "Hovering!" on mouseover and revert on mouseout.
 
-    const weather = { temperature: 32, humidity: "70%", condition: "Sunny" };
-    const weatherJSON = JSON.stringify(weather);
-    const weatherObj = JSON.parse(weatherJSON);
-    console.log("Weather Object:", weatherObj);
-    </script>
-</body>
-</html>
+Focus & Blur
+
+Add a focus event on focusinput that displays "Input focused" in the output.
+
+Add a blur event on focusInput that displays
+
+"Input blurred" in the output.
+
+Change the border color of focusinput to blue when focused and revert when blurred.
+
+Log the current value of focusInput in the console when it loses focus
+Input & Change
+
+Display the current value typed in livelnput in its output paragraph using the input event.
+
+Use the change event on selectinput to display the selected option in the output paragraph.
+
+Add a keyup event on livelnput to display the number of characters typed.
+
+Make selectInput show an alert with the selected value whenever it changes.
+
+Keyboard Event
+
+Add a keydown event on keyInput to display which key was pressed.
+
+If the user presses the Enter key, display "Enter pressed!" in the output.
+
+If the user presses the Backspace key, clear the keyInput output paragraph.
+
+Scroll Event
+
+Display the current scroll position of scrollCard in its output paragraph when scrolling.
+
+Change the background color of scrollContent when scrolled past 100px.
+
+Display "Scrolled to bottom!" when the scroll
+
+reaches the bottom of scroll Card.
+
+Context Menu
+
+Add a contextmenu event on contextBox that displays "Right click detected!" and prevents the default menu.
+
+Change the color of contextBox to yellow when right-clicked.
+
+Event Delegation
+Event Delegation
+
+Add a click event on delegation List to display which <li> item was clicked in the output.
+
+Add a hover effect for <li> elements using delegation that highlights the hovered item.
+
+When any <li> is double-clicked, remove it from the list.
+
+Add a new <li> dynamically to delegationList and ensure it also works with the delegation click
+
+Write the code using JavaScript
